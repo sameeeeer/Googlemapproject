@@ -34,13 +34,18 @@ public class SensorActivity extends AppCompatActivity {
 //        }
     }
     public void sensorGyro(){
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER); //TYPE_ACCELEROMETER //TYPE_GYROSCOPE
         SensorEventListener listener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
-                textView.setText("X: "+ event.values[0] +"\n"+
-                        "Y: "+ event.values[1] +"\n"+
-                        "Z: "+ event.values[2] +"\n");
+                textView.setText("X: "+ event.values[0] );
+                if(event.values[0]<7){
+                    Toast.makeText(SensorActivity.this, "Light is far", Toast.LENGTH_SHORT).show();
+                }
+//
+//                textView.setText("X: "+ event.values[0] +"\n"+
+//                        "Y: "+ event.values[1] +"\n"+
+//                        "Z: "+ event.values[2] +"\n");
             }
 
             @Override
